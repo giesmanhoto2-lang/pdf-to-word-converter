@@ -3,142 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF to Word - Conversor Profissional</title>
+    <title>PDF to Word Converter - Professional Document Transformation</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <span class="brand-icon">📄</span>
-                <span class="brand-text">PDF Converter</span>
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+                <span class="logo-text">PDF Converter</span>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="hero-section">
+    <!-- Main Container -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
             <h1 class="hero-title">Converta PDF para Word</h1>
-            <p class="hero-subtitle">Transforme seus documentos PDF em editáveis DOCX em segundos</p>
-        </div>
+            <p class="hero-description">Transforme documentos PDF em arquivos Word editáveis em segundos</p>
+        </section>
 
-        <div class="container">
-            <!-- Upload Area -->
-            <div class="upload-wrapper">
-                <div class="upload-box" id="uploadBox">
-                    <div class="upload-icon-container">
-                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="17 8 12 3 7 8"></polyline>
-                            <line x1="12" y1="3" x2="12" y2="15"></line>
-                        </svg>
-                    </div>
-                    <h2 class="upload-title">Arraste seu PDF aqui</h2>
-                    <p class="upload-subtitle">ou clique para selecionar um arquivo</p>
-                    <p class="upload-hint">Máximo 100MB • PDF com texto • Sem limite de conversões</p>
-                    <input type="file" id="fileInput" accept=".pdf" hidden>
+        <!-- Upload Container -->
+        <div class="converter-container">
+            <!-- Upload Box -->
+            <div class="upload-area" id="uploadBox">
+                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <h2 class="upload-title">Selecione um arquivo PDF</h2>
+                <p class="upload-description">Arraste seu PDF aqui ou clique para escolher</p>
+                <p class="upload-info">Máximo 100MB • Processamento local • Sem instalação</p>
+                <input type="file" id="fileInput" accept=".pdf" hidden>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingSection" class="state-container hidden">
+                <div class="loader">
+                    <div class="loader-ring"></div>
                 </div>
-
-                <!-- Loading State -->
-                <div id="loadingSection" class="hidden">
-                    <div class="loading-container">
-                        <div class="progress-ring-container">
-                            <svg class="progress-ring" viewBox="0 0 100 100">
-                                <circle class="progress-ring-bg" cx="50" cy="50" r="45"></circle>
-                                <circle class="progress-ring-circle" cx="50" cy="50" r="45"></circle>
-                            </svg>
-                            <span class="progress-percentage" id="progressPercent">0%</span>
-                        </div>
-                        <p id="loadingText" class="loading-text">Processando seu PDF...</p>
-                        <div class="loading-substeps">
-                            <div class="substep" id="substep1">
-                                <span class="substep-icon">✓</span>
-                                <span>Arquivo enviado</span>
-                            </div>
-                            <div class="substep" id="substep2">
-                                <span class="substep-icon">◌</span>
-                                <span>Processando conteúdo</span>
-                            </div>
-                            <div class="substep" id="substep3">
-                                <span class="substep-icon">◌</span>
-                                <span>Gerando documento</span>
-                            </div>
-                        </div>
-                    </div>
+                <h3 class="state-title">Processando seu arquivo</h3>
+                <p id="loadingText" class="state-text">Preparando ambiente...</p>
+                <div class="progress-bar">
+                    <div id="progressBar" class="progress-fill"></div>
                 </div>
+                <p id="progressText" class="progress-text">0%</p>
+            </div>
 
-                <!-- Success State -->
-                <div id="successSection" class="hidden">
-                    <div class="success-container">
-                        <div class="success-icon-large">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="success-title">Conversão concluída com sucesso!</h3>
-                        <p class="success-message" id="successMessage">Seu arquivo está pronto para download</p>
-                        <div class="success-actions">
-                            <button id="downloadBtn" class="btn btn-primary btn-lg">
-                                <span class="btn-icon">⬇️</span>
-                                <span>Baixar DOCX</span>
-                            </button>
-                            <button id="newFileBtn" class="btn btn-secondary">
-                                Converter outro
-                            </button>
-                        </div>
-                    </div>
+            <!-- Success State -->
+            <div id="successSection" class="state-container hidden">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"></path>
+                    </svg>
                 </div>
-
-                <!-- Error State -->
-                <div id="errorSection" class="hidden">
-                    <div class="error-container">
-                        <div class="error-icon-large">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="error-title">Erro ao processar arquivo</h3>
-                        <p id="errorMessage" class="error-message"></p>
-                        <div class="error-actions">
-                            <button id="retryBtn" class="btn btn-primary">
-                                Tentar novamente
-                            </button>
-                        </div>
-                    </div>
+                <h3 class="state-title success-title">Conversão concluída!</h3>
+                <p class="state-text">Seu arquivo está pronto para download</p>
+                <div class="action-buttons">
+                    <button id="downloadBtn" class="btn btn-primary">
+                        Baixar arquivo
+                    </button>
+                    <button id="newFileBtn" class="btn btn-secondary">
+                        Converter outro
+                    </button>
                 </div>
             </div>
 
-            <!-- Features Section -->
-            <div class="features-section">
-                <div class="feature-card">
-                    <div class="feature-icon">🔒</div>
-                    <h4 class="feature-title">100% Seguro</h4>
-                    <p class="feature-text">Processamento local - seus dados não saem do seu computador</p>
+            <!-- Error State -->
+            <div id="errorSection" class="state-container hidden">
+                <div class="error-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                    </svg>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h4 class="feature-title">Instantâneo</h4>
-                    <p class="feature-text">Conversão ultra rápida sem filas ou esperas</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h4 class="feature-title">Grátis</h4>
-                    <p class="feature-text">Sem custos, sem limite de conversões</p>
+                <h3 class="state-title error-title">Erro ao processar</h3>
+                <p id="errorMessage" class="state-text error-text"></p>
+                <div class="action-buttons">
+                    <button id="retryBtn" class="btn btn-primary">
+                        Tentar novamente
+                    </button>
                 </div>
             </div>
         </div>
+
+        <!-- Features Grid -->
+        <section class="features">
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h4 class="feature-title">Privado & Seguro</h4>
+                <p class="feature-description">Seu PDF é processado localmente. Nenhum arquivo é enviado para servidores</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h4 class="feature-title">Instantâneo</h4>
+                <p class="feature-description">Conversão ultra rápida sem filas ou limites de velocidade</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <h4 class="feature-title">Completamente Grátis</h4>
+                <p class="feature-description">Sem taxas ocultas, sem limitações de conversões</p>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-        <p>&copy; 2024 PDF Converter. Todos os direitos reservados.</p>
+        <p>&copy; 2024 PDF Converter. Desenvolvido com qualidade.</p>
     </footer>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://unpkg.com/docx@8.5.0"></script>
     <script src="script.js"></script>
 </body>
 </html>
