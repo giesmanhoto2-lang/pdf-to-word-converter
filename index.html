@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor PDF para Word</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📄 Conversor PDF → Word</h1>
+            <p>Converta seus PDFs para Word (DOCX) gratuitamente, direto no seu navegador!</p>
+        </div>
+
+        <div class="upload-section">
+            <div class="upload-box" id="uploadBox">
+                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <h2>Arraste seu PDF aqui</h2>
+                <p>ou clique para selecionar</p>
+                <input type="file" id="fileInput" accept=".pdf" hidden>
+            </div>
+
+            <div id="loadingSection" class="hidden">
+                <div class="spinner"></div>
+                <p id="loadingText">Processando seu PDF...</p>
+            </div>
+
+            <div id="successSection" class="hidden">
+                <div class="success-icon">✓</div>
+                <h3>Conversão concluída!</h3>
+                <button id="downloadBtn" class="btn btn-primary">
+                    ⬇️ Baixar Word (DOCX)
+                </button>
+                <button id="newFileBtn" class="btn btn-secondary">
+                    ➕ Converter outro arquivo
+                </button>
+            </div>
+
+            <div id="errorSection" class="hidden">
+                <div class="error-icon">⚠️</div>
+                <p id="errorMessage"></p>
+                <button id="retryBtn" class="btn btn-secondary">
+                    🔄 Tentar novamente
+                </button>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>ℹ️ Informações</h3>
+            <ul>
+                <li>✅ Processamento 100% local (seu PDF não sai do seu computador)</li>
+                <li>✅ Completamente grátis</li>
+                <li>✅ Sem limite de tamanho (até sua RAM permitir)</li>
+                <li>✅ Suporta PDFs com texto</li>
+                <li>⚠️ Nota: PDFs escaneados/imagens podem não funcionar bem</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Bibliotecas CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
